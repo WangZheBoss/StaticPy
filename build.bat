@@ -25,6 +25,9 @@ if "%ARCH_OPT%" EQU "-x86" (
 rem Remove old output
 del /S /Q output nuget-result-%NUGET_PYTHON_PACKAGE_NAME% >nul
 
+set "GitTag="
+for /f "delims=" %%G in ('git describe --all --always --dirty') do set "GitTag=%%G"
+
 move .\Lib\pip.py .\Lib\pip.py.bak
 
 mkdir Embedded\embed_data\C\vfs\ssl 2>nul
