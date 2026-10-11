@@ -868,7 +868,10 @@ class CBytesIOTest(PyBytesIOTest):
 
     @support.cpython_only
     def test_sizeof(self):
-        basesize = support.calcobjsize('P2n2Pn')
+        if support.Py_GIL_DISABLED:
+            basesize = support.calcobjsize('P2n2Pni')
+        else:
+            basesize = support.calcobjsize('P2n2Pn')
         check = self.check_sizeof
         self.assertEqual(object.__sizeof__(io.BytesIO()), basesize)
         check(io.BytesIO(), basesize )
@@ -919,6 +922,18 @@ class CBytesIOTest(PyBytesIOTest):
         old_rc = sys.getrefcount(ba)
         memio = self.ioclass(ba)
         self.assertEqual(sys.getrefcount(ba), old_rc)
+
+    def test_write_with_export(self):
+        memio = self.ioclass(b"abcd")
+        memio.seek(2)
+        with memio.getbuffer() as view:
+            self.assertRaises(BufferError, memio.__init__, b"replacement")
+            self.assertEqual(memio.tell(), 2)
+            self.assertEqual(memio.getvalue(), b"abcd")
+            self.assertEqual(bytes(view), b"abcd")
+        memio.write(b"X")
+        self.assertEqual(memio.getvalue(), b"abXd")
+
 
 class CStringIOTest(PyStringIOTest):
     ioclass = io.StringIO

@@ -143,12 +143,19 @@ WIN32 is still required for the locale module.
 #define MS_WIN64
 #endif
 
+#ifdef __clang__
+#define _Py_CLANG_COMPILER(platform) ( \
+   "[Clang " _Py_STRINGIZE(__clang_major__) "." _Py_STRINGIZE(__clang_minor__) \
+   "." _Py_STRINGIZE(__clang_patchlevel__) " " platform \
+   " with MSC v." _Py_STRINGIZE(_MSC_VER) " CRT]")
+#endif
+
 /* set the COMPILER and support tier
  *
  * win_amd64 MSVC (x86_64-pc-windows-msvc): 1
  * win32 MSVC (i686-pc-windows-msvc): 1
  * win_arm64 MSVC (aarch64-pc-windows-msvc): 3
- * other archs and ICC: 0
+ * other archs and clang-cl/ICC: 0
  */
 #ifdef MS_WIN64
 #if defined(_M_X64) || defined(_M_AMD64)
@@ -164,8 +171,13 @@ WIN32 is still required for the locale module.
 #endif /* __clang__ */
 #define PYD_PLATFORM_TAG "win_amd64"
 #elif defined(_M_ARM64)
+#if defined(__clang__)
+#define COMPILER _Py_CLANG_COMPILER("64 bit (ARM64)")
+#define PY_SUPPORT_TIER 0
+#else
 #define COMPILER _Py_PASTE_VERSION("64 bit (ARM64)")
 #define PY_SUPPORT_TIER 3
+#endif /* __clang__ */
 #define PYD_PLATFORM_TAG "win_arm64"
 #else
 #define COMPILER _Py_PASTE_VERSION("64 bit (Unknown)")
