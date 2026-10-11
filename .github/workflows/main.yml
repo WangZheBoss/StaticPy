@@ -42,7 +42,7 @@ jobs:
       run: arch -${{ matrix.architecture.arch }} bash build.mac.sh ${{ matrix.lto.lto_arg }} "${{ github.workspace }}/MonolithPy-Out"
     - name: Cleanup artifact
       run: find "${{ github.workspace }}/MonolithPy-Out" \( -iname '*.la' -o -iname '*.pc' -o -iname '__pycache__' -o -iname 'link.json' \) | xargs rm -rf
-    - uses: actions/upload-artifact@v4
+    - uses: actions/upload-artifact@v6
       with:
         name: MonolithPy314_mac_${{ matrix.architecture.arch }}${{ matrix.lto.artifact_tag }}
         path: ${{ github.workspace }}/MonolithPy-Out
@@ -145,7 +145,7 @@ jobs:
         # Do NOT delete *.o: the mp_embed tests below link against
         # MonolithPy-Out/Embedded/mp_embed.o. Match the macOS cleanup set.
         run: find "${{ github.workspace }}/MonolithPy-Out" \( -iname '*.la' -o -iname '*.pc' -o -iname '__pycache__' -o -iname 'link.json' \) | xargs rm -rf
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v6
         with:
           name: MonolithPy314_ubuntu
           path: ${{ github.workspace }}/MonolithPy-Out
@@ -229,7 +229,7 @@ jobs:
       run: build.bat
     - name: Cleanup rebuild interpreters
       run: Get-ChildItem -Path $(Get-Location) -File -Include *.old_interp -Recurse | Remove-Item -Force -Verbose
-    - uses: actions/upload-artifact@v4
+    - uses: actions/upload-artifact@v6
       with:
         name: MonolithPy314_windows_x64
         path: output
