@@ -64,13 +64,6 @@ extern PyObject* PyInit__json(void);
 extern PyObject* PyInit_zlib(void);
 #endif
 
-extern PyObject* PyInit__multibytecodec(void);
-extern PyObject* PyInit__codecs_cn(void);
-extern PyObject* PyInit__codecs_hk(void);
-extern PyObject* PyInit__codecs_iso2022(void);
-extern PyObject* PyInit__codecs_jp(void);
-extern PyObject* PyInit__codecs_kr(void);
-extern PyObject* PyInit__codecs_tw(void);
 extern PyObject* PyInit__winapi(void);
 extern PyObject* PyInit__lsprof(void);
 extern PyObject* PyInit__ast(void);
@@ -161,13 +154,6 @@ struct _inittab _PyImport_Inittab[] = {
 #endif
 
     /* CJK codecs */
-    {"_multibytecodec", PyInit__multibytecodec},
-    {"_codecs_cn", PyInit__codecs_cn},
-    {"_codecs_hk", PyInit__codecs_hk},
-    {"_codecs_iso2022", PyInit__codecs_iso2022},
-    {"_codecs_jp", PyInit__codecs_jp},
-    {"_codecs_kr", PyInit__codecs_kr},
-    {"_codecs_tw", PyInit__codecs_tw},
 
 /* tools/freeze/makeconfig.py marker for additional "_inittab" entries */
 /* -- ADDMODULE MARKER 2 -- */

@@ -727,20 +727,6 @@ LIBHACL_LDFLAGS
 LIBHACL_CFLAGS
 MODULE_UNICODEDATA_FALSE
 MODULE_UNICODEDATA_TRUE
-MODULE__MULTIBYTECODEC_FALSE
-MODULE__MULTIBYTECODEC_TRUE
-MODULE__CODECS_TW_FALSE
-MODULE__CODECS_TW_TRUE
-MODULE__CODECS_KR_FALSE
-MODULE__CODECS_KR_TRUE
-MODULE__CODECS_JP_FALSE
-MODULE__CODECS_JP_TRUE
-MODULE__CODECS_ISO2022_FALSE
-MODULE__CODECS_ISO2022_TRUE
-MODULE__CODECS_HK_FALSE
-MODULE__CODECS_HK_TRUE
-MODULE__CODECS_CN_FALSE
-MODULE__CODECS_CN_TRUE
 MODULE__ELEMENTTREE_FALSE
 MODULE__ELEMENTTREE_TRUE
 MODULE_PYEXPAT_FALSE
@@ -30444,7 +30430,6 @@ SRCDIRS="\
   Modules/_testlimitedcapi \
   Modules/_xxtestfuzz \
   Modules/_zstd \
-  Modules/cjkcodecs \
   Modules/expat \
   Objects \
   Objects/mimalloc \
@@ -32883,7 +32868,7 @@ printf "%s\n" "$py_cv_module__elementtree" >&6; }
 
         if test "$py_cv_module__codecs_cn" != "n/a"
 then :
-  py_cv_module__codecs_cn=yes
+  py_cv_module__codecs_cn=
 fi
    if test "$py_cv_module__codecs_cn" = yes; then
   MODULE__CODECS_CN_TRUE=
@@ -32905,7 +32890,7 @@ fi
 
         if test "$py_cv_module__codecs_hk" != "n/a"
 then :
-  py_cv_module__codecs_hk=yes
+  py_cv_module__codecs_hk=
 fi
    if test "$py_cv_module__codecs_hk" = yes; then
   MODULE__CODECS_HK_TRUE=
@@ -32927,7 +32912,7 @@ fi
 
         if test "$py_cv_module__codecs_iso2022" != "n/a"
 then :
-  py_cv_module__codecs_iso2022=yes
+  py_cv_module__codecs_iso2022=
 fi
    if test "$py_cv_module__codecs_iso2022" = yes; then
   MODULE__CODECS_ISO2022_TRUE=
@@ -32949,7 +32934,7 @@ fi
 
         if test "$py_cv_module__codecs_jp" != "n/a"
 then :
-  py_cv_module__codecs_jp=yes
+  py_cv_module__codecs_jp=
 fi
    if test "$py_cv_module__codecs_jp" = yes; then
   MODULE__CODECS_JP_TRUE=
@@ -32971,7 +32956,7 @@ fi
 
         if test "$py_cv_module__codecs_kr" != "n/a"
 then :
-  py_cv_module__codecs_kr=yes
+  py_cv_module__codecs_kr=
 fi
    if test "$py_cv_module__codecs_kr" = yes; then
   MODULE__CODECS_KR_TRUE=
@@ -32993,7 +32978,7 @@ fi
 
         if test "$py_cv_module__codecs_tw" != "n/a"
 then :
-  py_cv_module__codecs_tw=yes
+  py_cv_module__codecs_tw=
 fi
    if test "$py_cv_module__codecs_tw" = yes; then
   MODULE__CODECS_TW_TRUE=
@@ -33015,7 +33000,7 @@ fi
 
         if test "$py_cv_module__multibytecodec" != "n/a"
 then :
-  py_cv_module__multibytecodec=yes
+  py_cv_module__multibytecodec=
 fi
    if test "$py_cv_module__multibytecodec" = yes; then
   MODULE__MULTIBYTECODEC_TRUE=

@@ -16,9 +16,6 @@
     <Filter Include="Modules\zlib">
       <UniqueIdentifier>{5d6d2d6c-9e61-4a1d-b0b2-5cc2f446d69e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Modules\cjkcodecs">
-      <UniqueIdentifier>{9f12c4b1-322e-431e-abf1-e02550f50032}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Objects">
       <UniqueIdentifier>{ab29a558-143d-4fe7-a039-b431fb429856}</UniqueIdentifier>
     </Filter>
@@ -263,36 +260,6 @@
     </ClInclude>
     <ClInclude Include="..\Modules\_io\_iomodule.h">
       <Filter>Modules\_io</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Modules\cjkcodecs\alg_jisx0201.h">
-      <Filter>Modules\cjkcodecs</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Modules\cjkcodecs\cjkcodecs.h">
-      <Filter>Modules\cjkcodecs</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Modules\cjkcodecs\emu_jisx0213_2000.h">
-      <Filter>Modules\cjkcodecs</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Modules\cjkcodecs\mappings_cn.h">
-      <Filter>Modules\cjkcodecs</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Modules\cjkcodecs\mappings_hk.h">
-      <Filter>Modules\cjkcodecs</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Modules\cjkcodecs\mappings_jisx0213_pair.h">
-      <Filter>Modules\cjkcodecs</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Modules\cjkcodecs\mappings_jp.h">
-      <Filter>Modules\cjkcodecs</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Modules\cjkcodecs\mappings_kr.h">
-      <Filter>Modules\cjkcodecs</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Modules\cjkcodecs\mappings_tw.h">
-      <Filter>Modules\cjkcodecs</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Modules\cjkcodecs\multibytecodec.h">
-      <Filter>Modules\cjkcodecs</Filter>
     </ClInclude>
     <ClInclude Include="..\Objects\stringlib\count.h">
       <Filter>Objects</Filter>
@@ -1143,27 +1110,6 @@
     </ClCompile>
     <ClCompile Include="..\Modules\_io\_iomodule.c">
       <Filter>Modules\_io</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Modules\cjkcodecs\_codecs_cn.c">
-      <Filter>Modules\cjkcodecs</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Modules\cjkcodecs\_codecs_hk.c">
-      <Filter>Modules\cjkcodecs</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Modules\cjkcodecs\_codecs_iso2022.c">
-      <Filter>Modules\cjkcodecs</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Modules\cjkcodecs\_codecs_jp.c">
-      <Filter>Modules\cjkcodecs</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Modules\cjkcodecs\_codecs_kr.c">
-      <Filter>Modules\cjkcodecs</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Modules\cjkcodecs\_codecs_tw.c">
-      <Filter>Modules\cjkcodecs</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Modules\cjkcodecs\multibytecodec.c">
-      <Filter>Modules\cjkcodecs</Filter>
     </ClCompile>
     <ClCompile Include="..\Objects\abstract.c">
       <Filter>Objects</Filter>

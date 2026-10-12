@@ -180,13 +180,6 @@ _hmac hmacmodule.c -I$(srcdir)/Modules/_hacl/include Modules/_hacl/libHacl_HMAC.
 _remote_debugging _remote_debugging_module.c
 
 # text encodings and unicode
-_codecs_cn cjkcodecs/_codecs_cn.c
-_codecs_hk cjkcodecs/_codecs_hk.c
-_codecs_iso2022 cjkcodecs/_codecs_iso2022.c
-_codecs_jp cjkcodecs/_codecs_jp.c
-_codecs_kr cjkcodecs/_codecs_kr.c
-_codecs_tw cjkcodecs/_codecs_tw.c
-_multibytecodec cjkcodecs/multibytecodec.c
 unicodedata unicodedata.c
 
 # Modules with some UNIX dependencies
@@ -303,4 +296,3 @@ readline
 #_lzma
 #
 # _sqlite3 _tkinter _curses pyexpat
-# _codecs_jp _codecs_kr _codecs_tw unicodedata

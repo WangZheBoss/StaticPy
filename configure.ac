@@ -7341,7 +7341,6 @@ SRCDIRS="\
   Modules/_testlimitedcapi \
   Modules/_xxtestfuzz \
   Modules/_zstd \
-  Modules/cjkcodecs \
   Modules/expat \
   Objects \
   Objects/mimalloc \
@@ -8121,13 +8120,6 @@ PY_STDLIB_MOD([pyexpat],
   [], [test "$ac_cv_header_sys_time_h" = "yes"],
   [$LIBEXPAT_CFLAGS], [$LIBEXPAT_LDFLAGS])
 PY_STDLIB_MOD([_elementtree], [], [], [$LIBEXPAT_CFLAGS], [])
-PY_STDLIB_MOD_SIMPLE([_codecs_cn])
-PY_STDLIB_MOD_SIMPLE([_codecs_hk])
-PY_STDLIB_MOD_SIMPLE([_codecs_iso2022])
-PY_STDLIB_MOD_SIMPLE([_codecs_jp])
-PY_STDLIB_MOD_SIMPLE([_codecs_kr])
-PY_STDLIB_MOD_SIMPLE([_codecs_tw])
-PY_STDLIB_MOD_SIMPLE([_multibytecodec])
 PY_STDLIB_MOD_SIMPLE([unicodedata])
 
 ###############################################################################
