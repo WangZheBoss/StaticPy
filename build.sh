@@ -624,6 +624,8 @@ $ELEVATE mv ${PREFIX}/lib/libmp_embed.a "$target/lib/libmp_embed.a"
 $ELEVATE cp -v Modules/_hacl/libHacl_Hash_SHA2.a "$target/lib/"
 $ELEVATE cp -v Modules/_hacl/libHacl_Hash_BLAKE2.a "$target/lib/"
 $ELEVATE cp -v Modules/_hacl/libHacl_HMAC.a "$target/lib/"
+git clone https://github.com/dcwatson/deflate "$target/deflate"
+$ELEVATE cp -r "deflate_config" "$target/deflate/"
 
 $ELEVATE mkdir -p "$target/Embedded"
 # The object file usually gets deleted during the build, so make sure to recompile here just in case.
