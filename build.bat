@@ -89,6 +89,25 @@ if errorlevel 1 exit /b 1
 lib /OUT:Embedded\mp_embed_data.lib Embedded\mp_embed_data.obj
 if errorlevel 1 exit /b 1
 
+rem Build libdeflate as a static dependency.
+curl.exe -fL ^
+  "https://github.com/ebiggers/libdeflate/releases/download/v1.26/libdeflate-1.26.tar.gz" ^
+  -o libdeflate.tar.gz
+
+tar.exe -xf libdeflate.tar.gz
+cmake -S "libdeflate" ^
+  -B "libdeflate\build" ^
+  -DCMAKE_BUILD_TYPE=Release ^
+  -DCMAKE_INSTALL_PREFIX="%DEPENDENCY_PREFIX%" ^
+  -DLIBDEFLATE_BUILD_STATIC_LIB=ON ^
+  -DLIBDEFLATE_BUILD_SHARED_LIB=OFF ^
+  -DLIBDEFLATE_BUILD_GZIP=OFF ^
+  -DLIBDEFLATE_BUILD_TESTS=OFF
+if errorlevel 1 exit /b 1
+cmake --build "libdeflate\build" --config Release --parallel
+if errorlevel 1 exit /b 1
+cmake --install "libdeflate\build" --config Release
+if errorlevel 1 exit /b 1
 
 rem Build with nuget, it solves the directory structure for us.
 call .\Tools\nuget\build.bat %ARCH_OPT% %PGO_OPT% %REBUILD_OPT%

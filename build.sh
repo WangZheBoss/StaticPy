@@ -539,6 +539,25 @@ make install
 cd ..
 fi
 
+if [ ! -d libdeflate-1.26 ]; then
+# Build libdeflate as a static dependency.
+# Use the same download/cache helper as the other dependencies here.
+download_file https://github.com/ebiggers/libdeflate/releases/download/v1.26/libdeflate-1.26.tar.gz libdeflate.tar.gz
+tar -xf "libdeflate.tar.gz"
+cmake -S "libdeflate" \
+  -B "libdeflate/build" \
+  -DCMAKE_BUILD_TYPE=Release \
+  -DCMAKE_INSTALL_PREFIX="${DEPENDENCY_PREFIX}" \
+  -DCMAKE_POSITION_INDEPENDENT_CODE=ON \
+  -DLIBDEFLATE_BUILD_STATIC_LIB=ON \
+  -DLIBDEFLATE_BUILD_SHARED_LIB=OFF \
+  -DLIBDEFLATE_BUILD_GZIP=OFF \
+  -DLIBDEFLATE_BUILD_TESTS=OFF
+
+cmake --build "libdeflate/build" --parallel
+cmake --install "libdeflate/build"
+fi
+
 cd ..
 
 long_version=$(git branch --show-current 2>/dev/null || git symbolic-ref --short HEAD)
