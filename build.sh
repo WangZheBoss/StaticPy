@@ -544,7 +544,7 @@ if [ ! -d libdeflate-1.26 ]; then
 # Use the same download/cache helper as the other dependencies here.
 download_file https://github.com/ebiggers/libdeflate/releases/download/v1.26/libdeflate-1.26.tar.gz libdeflate.tar.gz
 tar -xf "libdeflate.tar.gz"
-cmake -S "libdeflate" \
+cmake -S "libdeflate-1.26" \
   -B "libdeflate/build" \
   -DCMAKE_BUILD_TYPE=Release \
   -DCMAKE_INSTALL_PREFIX="${DEPENDENCY_PREFIX}" \
