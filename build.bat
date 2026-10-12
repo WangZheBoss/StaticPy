@@ -145,6 +145,9 @@ for /d %%d in (externals\openssl*) do (
 for /d %%d in (externals\libffi*) do (
    xcopy /i /q /s /y %SRC_LIB_DIR%\include %OUTPUT_DIR%\dependency_libs\libffi\include
 )
+
+mkdir %OUTPUT_DIR%\dependency_libs\libdeflate\lib
+mkdir %OUTPUT_DIR%\dependency_libs\libdeflate\include
 copy /y externals\libdeflate-1.26\build\Release %OUTPUT_DIR%\dependency_libs\libdeflate\lib
 copy /y externals\libdeflate-1.26\libdeflate.h %OUTPUT_DIR%\dependency_libs\libdeflate\include
 git clone https://github.com/dcwatson/deflate %OUTPUT_DIR%\deflate
@@ -160,6 +163,7 @@ copy Embedded\mp_embed_data.lib %OUTPUT_DIR%\libs\mp_embed_data.lib
 %OUTPUT_DIR%\python.exe -m rebuildpython
 
 echo "Ok, MonolithPy now lives in %OUTPUT_DIR% folder"
+echo "set LIBDEFLATE_PREFIX=.\dependency_libs\libdeflate && python -m pip install .\deflate --no-binary=deflate"
 
 endlocal
 
