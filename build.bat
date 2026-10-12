@@ -145,6 +145,8 @@ for /d %%d in (externals\openssl*) do (
 for /d %%d in (externals\libffi*) do (
    xcopy /i /q /s /y %SRC_LIB_DIR%\include %OUTPUT_DIR%\dependency_libs\libffi\include
 )
+xcopy /i /q /s /y externals\libdeflate-1.26\build\Release %OUTPUT_DIR%\dependency_libs\libdeflate\lib
+xcopy /i /q /s /y externals\libdeflate-1.26\libdeflate.h %OUTPUT_DIR%\dependency_libs\libdeflate\include
 
 mkdir %OUTPUT_DIR%\Embedded
 xcopy /i /q /s /y Embedded\embed_data %OUTPUT_DIR%\Embedded\embed_data
