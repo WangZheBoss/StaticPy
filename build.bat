@@ -94,7 +94,7 @@ curl.exe -fL ^
   "https://github.com/ebiggers/libdeflate/releases/download/v1.26/libdeflate-1.26.tar.gz" ^
   -o externals\libdeflate.tar.gz
 
-tar.exe -xf externals\libdeflate.tar.gz
+tar.exe -xf externals\libdeflate.tar.gz -C externals || exit /b 1
 cmake -S "externals\libdeflate-1.26" ^
   -B "externals\libdeflate-1.26\build" ^
   -DCMAKE_BUILD_TYPE=Release ^
