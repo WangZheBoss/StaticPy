@@ -555,7 +555,7 @@ cmake -S "libdeflate-1.26" \
   -DLIBDEFLATE_BUILD_TESTS=OFF
 
 cmake --build "libdeflate/build" --parallel
-cmake --install "libdeflate/build"
+$ELEVATE cmake --install "libdeflate/build"
 fi
 
 cd ..
