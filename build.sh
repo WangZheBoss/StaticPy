@@ -27,7 +27,7 @@ set -x
 # The dependencies must be outside of the build folder because
 # the python build process ends up running a find -delete that
 # happens to also delete all the static libraries that we built.
-export "PREFIX=$(pwd)/../MonolithPy-Deps"
+export "PREFIX=$(pwd)/../StaticPy-Deps"
 export "PYTHON_BASE=$(pwd)"
 export "CFLAGS=-I${PREFIX}/include -I${PYTHON_BASE}/Include -fPIC -flto -fuse-linker-plugin -fno-fat-lto-objects"
 export "CXXFLAGS=-I${PREFIX}/include -I${PYTHON_BASE}/Include -fPIC -flto -fuse-linker-plugin -fno-fat-lto-objects"
@@ -552,7 +552,8 @@ cmake -S "libdeflate-1.26" \
   -DLIBDEFLATE_BUILD_STATIC_LIB=ON \
   -DLIBDEFLATE_BUILD_SHARED_LIB=OFF \
   -DLIBDEFLATE_BUILD_GZIP=OFF \
-  -DLIBDEFLATE_BUILD_TESTS=OFF
+  -DLIBDEFLATE_BUILD_TESTS=OFF \
+  -DCMAKE_INSTALL_PREFIX=${PREFIX}
 
 cmake --build "libdeflate/build" --parallel
 cmake --install "libdeflate/build"
@@ -564,7 +565,7 @@ long_version=$(git branch --show-current 2>/dev/null || git symbolic-ref --short
 long_version=$(echo $long_version | sed -e 's#-.*##')
 short_version=$(echo $long_version | sed -e 's#\.##')
 
-target=/opt/monolithpy${short_version}
+target=/opt/staticpy${short_version}
 
 if [ ! -z "$1" ]
 then
@@ -624,7 +625,7 @@ $ELEVATE mv ${PREFIX}/lib/libmp_embed.a "$target/lib/libmp_embed.a"
 $ELEVATE cp -v Modules/_hacl/libHacl_Hash_SHA2.a "$target/lib/"
 $ELEVATE cp -v Modules/_hacl/libHacl_Hash_BLAKE2.a "$target/lib/"
 $ELEVATE cp -v Modules/_hacl/libHacl_HMAC.a "$target/lib/"
-git clone https://github.com/dcwatson/deflate "$target/deflate"
+$ELEVATE git clone https://github.com/dcwatson/deflate "$target/deflate"
 $ELEVATE cp -r "deflate_config" "$target/deflate/"
 
 $ELEVATE mkdir -p "$target/Embedded"
@@ -635,7 +636,7 @@ $ELEVATE cp -r "Embedded/mp_embed.o" "$target/Embedded/"
 $ELEVATE cp -r "Embedded/embed_data" "$target/Embedded/"
 
 $ELEVATE mkdir -p "$target/dependency_libs"
-$ELEVATE cp -r "$(pwd)/../MonolithPy-Deps" "$target/dependency_libs/base"
+$ELEVATE cp -r "$(pwd)/../StaticPy-Deps" "$target/dependency_libs/base"
 
 find "$target" \( -iname '*.la' -o -iname '*.pc' -o -iname '__pycache__' -o -iname 'link.json' \) | xargs $ELEVATE rm -rf
 
