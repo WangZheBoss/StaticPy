@@ -29,8 +29,8 @@ set -x
 # happens to also delete all the static libraries that we built.
 export "PREFIX=$(pwd)/../StaticPy-Deps"
 export "PYTHON_BASE=$(pwd)"
-export "CFLAGS=-I${PREFIX}/include -I${PYTHON_BASE}/Include -fPIC -flto -fuse-linker-plugin -fno-fat-lto-objects"
-export "CXXFLAGS=-I${PREFIX}/include -I${PYTHON_BASE}/Include -fPIC -flto -fuse-linker-plugin -fno-fat-lto-objects"
+export "CFLAGS=-I${PREFIX}/include -I${PYTHON_BASE}/Include -fPIC -flto -fuse-linker-plugin -fno-fat-lto-objects -Wno-error=incompatible-pointer-types"
+export "CXXFLAGS=-I${PREFIX}/include -I${PYTHON_BASE}/Include -fPIC -flto -fuse-linker-plugin -fno-fat-lto-objects -Wno-error=incompatible-pointer-types"
 export "CPPFLAGS=-I${PREFIX}/include -I${PYTHON_BASE}/Include"
 # --wrap rewrites references to fopen/fclose/etc into __wrap_NAME, but
 # ld only PULLS mp_embed.o from libmp_embed.a if some symbol it defines
