@@ -164,8 +164,8 @@ select selectmodule.c
 _sysconfig _sysconfig.c
 
 # XML
-_elementtree _elementtree.c
-pyexpat pyexpat.c
+#_elementtree _elementtree.c
+#pyexpat pyexpat.c
 
 # hashing builtins - HACL*-backed. Upstream moved blake2 to use the
 # same libHacl_Hash_*.a pattern as sha2 (commit 325e9b8ef40).
@@ -177,7 +177,7 @@ _sha3 sha3module.c -I$(srcdir)/Modules/_hacl/include _hacl/Hacl_Hash_SHA3.c -D_B
 _hmac hmacmodule.c -I$(srcdir)/Modules/_hacl/include Modules/_hacl/libHacl_HMAC.a
 
 # New in 3.14: remote-process debugging support.
-_remote_debugging _remote_debugging_module.c
+#_remote_debugging _remote_debugging_module.c
 
 # text encodings and unicode
 _codecs_cn cjkcodecs/_codecs_cn.c
@@ -206,11 +206,11 @@ _ctypes _ctypes/_ctypes.c _ctypes/callbacks.c _ctypes/callproc.c _ctypes/stgdict
 # The _dbm module supports NDBM, GDBM with compat module, and Berkeley DB.
 #_dbm _dbmmodule.c -l:libgdbm_compat.a -DUSE_GDBM_COMPAT
 #_gdbm _gdbmmodule.c -l:libgdbm.a
-_lzma _lzmamodule.c -l:liblzma.a
-_sqlite3 -I$(srcdir)/Modules/_sqlite _sqlite/blob.c _sqlite/connection.c _sqlite/cursor.c _sqlite/microprotocols.c _sqlite/module.c _sqlite/prepare_protocol.c _sqlite/row.c _sqlite/statement.c _sqlite/util.c -l:libsqlite3.a -DMODULE_NAME='"sqlite3"' -DSQLITE_ENABLE_COLUMN_METADATA
-_uuid _uuidmodule.c -l:libuuid.a
-_zstd _zstd/_zstdmodule.c _zstd/compressor.c _zstd/decompressor.c _zstd/zstddict.c -I$(srcdir)/Modules/_zstd -l:libzstd.a
-zlib  zlibmodule.c -l:libz.a
+#_lzma _lzmamodule.c -l:liblzma.a
+#_sqlite3 -I$(srcdir)/Modules/_sqlite _sqlite/blob.c _sqlite/connection.c _sqlite/cursor.c #_sqlite/microprotocols.c _sqlite/module.c _sqlite/prepare_protocol.c _sqlite/row.c _sqlite/#statement.c _sqlite/util.c -l:libsqlite3.a -DMODULE_NAME='"sqlite3"' #-DSQLITE_ENABLE_COLUMN_METADATA
+#_uuid _uuidmodule.c -l:libuuid.a
+#_zstd _zstd/_zstdmodule.c _zstd/compressor.c _zstd/decompressor.c _zstd/zstddict.c -I (srcdir)/Modules/_zstd -l:libzstd.a
+#zlib  zlibmodule.c -l:libz.a
 
 # The readline module also supports libeditline (-leditline).
 # Some systems may require -ltermcap or -ltermlib.
@@ -221,8 +221,8 @@ zlib  zlibmodule.c -l:libz.a
 #_hashlib _hashopenssl.c $(OPENSSL_INCLUDES) $(OPENSSL_LDFLAGS) -lcrypto
 
 # To statically link OpenSSL:
-_ssl _ssl.c $(OPENSSL_INCLUDES) $(OPENSSL_LDFLAGS) -l:libssl.a -l:libcrypto.a
-_hashlib _hashopenssl.c $(OPENSSL_INCLUDES) $(OPENSSL_LDFLAGS) -l:libcrypto.a
+#_ssl _ssl.c $(OPENSSL_INCLUDES) $(OPENSSL_LDFLAGS) -l:libssl.a -l:libcrypto.a
+#_hashlib _hashopenssl.c $(OPENSSL_INCLUDES) $(OPENSSL_LDFLAGS) -l:libcrypto.a
 
 # The _tkinter module.
 #
@@ -235,7 +235,7 @@ _hashlib _hashopenssl.c $(OPENSSL_INCLUDES) $(OPENSSL_LDFLAGS) -l:libcrypto.a
 # done by the shell's "read" command and it may not be implemented on
 # every system.
 
-_tkinter _tkinter.c tkappinit.c -DWITH_APPINIT $(TCLTK_INCLUDES) $(TCLTK_LIBS) -l:libtk8.6.a -l:libtcl8.6.a -l:libX11.a -l:libxcb.a -l:libXss.a -l:libfontconfig.a -l:libXft.a -l:libXext.a -l:libXrandr.a -l:libXau.a -l:libXrender.a -l:libXdmcp.a -l:libfreetype.a -l:libexpat.a -l:libpng.a -l:libharfbuzz.a -l:libX11.a -l:libxcb.a
+#_tkinter _tkinter.c tkappinit.c -DWITH_APPINIT $(TCLTK_INCLUDES) $(TCLTK_LIBS) -l:libtk8.6.a #-l:libtcl8.6.a -l:libX11.a -l:libxcb.#a -l:libXss.a -l:libfontconfig.a -l:libXft.a -l:libXext.#a -l:libXrandr.a -l:libXau.a -l:libXrender.a -l:libXdmcp.a -l:libfreetype.#a -l:libexpat.a #-l:libpng.a -l:libharfbuzz.a -l:libX11.a -l:libxcb.a
 
 # Some system have -lcurses
 _curses -l:libncursesw.a _cursesmodule.c
@@ -300,7 +300,7 @@ xxlimited_35
 xxsubtype
 _gdbm
 readline
-#_lzma
+_lzma
 #
-# _sqlite3 _tkinter _curses pyexpat
+_sqlite3 _tkinter _curses pyexpat
 # _codecs_jp _codecs_kr _codecs_tw unicodedata
