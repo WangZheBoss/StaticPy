@@ -556,7 +556,7 @@ cmake -S "libdeflate-1.26" \
   -DCMAKE_INSTALL_PREFIX=${PREFIX}
 
 cmake --build "libdeflate/build" --parallel
-cmake --install "libdeflate/build"
+$ELEVATE cmake --install "libdeflate/build"
 fi
 
 cd ..

@@ -2,7 +2,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      3.14*
+      3.14* 
 
 jobs:
   mac:
