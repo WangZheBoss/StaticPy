@@ -208,13 +208,13 @@ fi
 #cd ..
 #fi
 
-#if [ ! -d bzip2-bzip2-1.0.8 ]; then
-#download_file https://gitlab.com/bzip2/bzip2/-/archive/bzip2-1.0.8/bzip2-bzip2-1.0.8.tar.gz bzip2.tar.gz
-#tar -xf bzip2.tar.gz
-#cd bzip2-bzip2-1.0.8
-#make install "PREFIX=$PREFIX" -j$(nproc --all)
-#cd ..
-#fi
+if [ ! -d bzip2-bzip2-1.0.8 ]; then
+download_file https://gitlab.com/bzip2/bzip2/-/archive/bzip2-1.0.8/bzip2-bzip2-1.0.8.tar.gz bzip2.tar.gz
+tar -xf bzip2.tar.gz
+cd bzip2-bzip2-1.0.8
+make install "PREFIX=$PREFIX" -j$(nproc --all)
+cd ..
+fi
 
 if [ ! -d util-linux-2.39 ]; then
 download_file https://mirrors.edge.kernel.org/pub/linux/utils/util-linux/v2.39/util-linux-2.39.tar.gz util-linux.tar.gz
@@ -584,15 +584,16 @@ export "CPPFLAGS=-I${PREFIX}/include"
   CXX="$CXX" \
   CFLAGS="-g $CFLAGS" \
   LDFLAGS="-g -Xlinker -export-dynamic -rdynamic -Bsymbolic-functions -Wl,-z,relro -Wl,-allow-multiple-definition $LDFLAGS" \
-  LIBS="-l:libffi.a -l:libbz2.a -l:libuuid.a -l:libsqlite3.a -l:liblzma.a -l:librt.a -l:libmp_embed.a -l:libdeflate.a" \
+  LIBS="-l:libffi.a -l:libbz2.a -l:libuuid.a -l:liblzma.a -l:librt.a -l:libmp_embed.a -l:libdeflate.a" \
   PROFILE_TASK='-m test --pgo -x test_json ' \
   MODULE_BUILDTYPE=static \
   ax_cv_c_float_words_bigendian=no \
+  ___ORIG_DEPS_PREFIX=${PREFIX}___
   #ac_cv_lib_sqlite3_sqlite3_bind_double=yes ac_cv_lib_sqlite3_sqlite3_column_decltype=yes ac_cv_lib_sqlite3_sqlite3_column_double=yes \
   #ac_cv_lib_sqlite3_sqlite3_complete=yes ac_cv_lib_sqlite3_sqlite3_enable_shared_cache=yes ac_cv_lib_sqlite3_sqlite3_progress_handler=yes \
   #ac_cv_lib_sqlite3_sqlite3_result_double=yes ac_cv_lib_sqlite3_sqlite3_set_authorizer=yes ac_cv_lib_sqlite3_sqlite3_trace_v2=yes \
   #ac_cv_lib_sqlite3_sqlite3_value_double=yes ac_cv_lib_sqlite3_sqlite3_load_extension=yes ac_cv_lib_sqlite3_sqlite3_serialize=yes \
-  ___ORIG_DEPS_PREFIX=${PREFIX}___
+  
 
 make -j $(nproc --all) \
         EXTRA_CFLAGS="-flto -fuse-linker-plugin -fno-fat-lto-objects" \
