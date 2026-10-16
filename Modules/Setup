@@ -302,5 +302,5 @@ _gdbm
 readline
 _lzma
 #
-_sqlite3 _tkinter _curses pyexpat
+_sqlite3 _tkinter _curses pyexpat _elementtree
 # _codecs_jp _codecs_kr _codecs_tw unicodedata
