@@ -180,33 +180,33 @@ make install
 cd ..
 fi
 
-#if [ ! -d sqlite-autoconf-3530300 ]; then
-#download_file https://sqlite.org/2026/sqlite-autoconf-3530300.tar.gz sqlite.tar.gz
-#tar -xf sqlite.tar.gz
-#cd sqlite-autoconf-3530300
-#export "CFLAGS_bak=$CFLAGS"
-#export "CPPFLAGS_bak=$CPPFLAGS"
-#export "CFLAGS=$CFLAGS -DSQLITE_ENABLE_COLUMN_METADATA"
-#export "CPPFLAGS=$CPPFLAGS -DSQLITE_ENABLE_COLUMN_METADATA"
-#./configure --prefix=${PREFIX} --disable-shared
-#make -j$(nproc --all)
-#make install
-#export "CFLAGS=$CFLAGS_bak"
-#export "CPPFLAGS=$CPPFLAGS_bak"
-#cd ..
-#fi
+if [ ! -d sqlite-autoconf-3530300 ]; then
+download_file https://sqlite.org/2026/sqlite-autoconf-3530300.tar.gz sqlite.tar.gz
+tar -xf sqlite.tar.gz
+cd sqlite-autoconf-3530300
+export "CFLAGS_bak=$CFLAGS"
+export "CPPFLAGS_bak=$CPPFLAGS"
+export "CFLAGS=$CFLAGS -DSQLITE_ENABLE_COLUMN_METADATA"
+export "CPPFLAGS=$CPPFLAGS -DSQLITE_ENABLE_COLUMN_METADATA"
+./configure --prefix=${PREFIX} --disable-shared
+make -j$(nproc --all)
+make install
+export "CFLAGS=$CFLAGS_bak"
+export "CPPFLAGS=$CPPFLAGS_bak"
+cd ..
+fi
 
-#if [ ! -d openssl-3.5.7 ]; then
-#download_file https://github.com/openssl/openssl/releases/download/openssl-3.5.7/openssl-3.5.7.tar.gz openssl.tar.gz
-#tar -xf openssl.tar.gz
-#cd openssl-3.5.7
-#export "CPPINCLUDES=$PYTHON_BASE/Include"
-#./Configure --prefix=${PREFIX} --libdir=lib linux-x86_64 enable-ec_nistp_64_gcc_128 no-shared no-tests --openssldir=/vfs/ssl
-#find . \( -iname '*.h.in' -o -iname '*.h' -o -iname '*.c' -o -iname '*.cc' -o -iname '*.cpp' -o -iname '*.cxx' \) | xargs sed -i '1s/^/#include "mp_embed.h"\n\'$'\n/g'
-#make install_dev -j$(nproc --all)
-#unset CPPINCLUDES
-#cd ..
-#fi
+if [ ! -d openssl-3.5.7 ]; then
+download_file https://github.com/openssl/openssl/releases/download/openssl-3.5.7/openssl-3.5.7.tar.gz openssl.tar.gz
+tar -xf openssl.tar.gz
+cd openssl-3.5.7
+export "CPPINCLUDES=$PYTHON_BASE/Include"
+./Configure --prefix=${PREFIX} --libdir=lib linux-x86_64 enable-ec_nistp_64_gcc_128 no-shared no-tests --openssldir=/vfs/ssl
+find . \( -iname '*.h.in' -o -iname '*.h' -o -iname '*.c' -o -iname '*.cc' -o -iname '*.cpp' -o -iname '*.cxx' \) | xargs sed -i '1s/^/#include "mp_embed.h"\n\'$'\n/g'
+make install_dev -j$(nproc --all)
+unset CPPINCLUDES
+cd ..
+fi
 
 if [ ! -d bzip2-bzip2-1.0.8 ]; then
 download_file https://gitlab.com/bzip2/bzip2/-/archive/bzip2-1.0.8/bzip2-bzip2-1.0.8.tar.gz bzip2.tar.gz
@@ -499,15 +499,15 @@ fi
 #cd ../..
 #fi
 
-#if [ ! -d expat-2.8.2 ]; then
-#download_file https://github.com/libexpat/libexpat/releases/download/R_2_8_2/expat-2.8.2.tar.gz expat.tar.gz
-#tar -xf expat.tar.gz
-#cd expat-2.8.2
-#./configure --prefix=${PREFIX} --disable-shared
-#make -j$(nproc --all)
-#make install
-#cd ..
-#fi
+if [ ! -d expat-2.8.2 ]; then
+download_file https://github.com/libexpat/libexpat/releases/download/R_2_8_2/expat-2.8.2.tar.gz expat.tar.gz
+tar -xf expat.tar.gz
+cd expat-2.8.2
+./configure --prefix=${PREFIX} --disable-shared
+make -j$(nproc --all)
+make install
+cd ..
+fi
 
 #if [ ! -d tk8.6.18 ]; then
 #download_file http://downloads.sourceforge.net/project/tcl/Tcl/8.6.18/tk8.6.18-src.tar.gz tk.tar.gz
@@ -588,12 +588,11 @@ export "CPPFLAGS=-I${PREFIX}/include"
   PROFILE_TASK='-m test --pgo -x test_json ' \
   MODULE_BUILDTYPE=static \
   ax_cv_c_float_words_bigendian=no \
+  ac_cv_lib_sqlite3_sqlite3_bind_double=yes ac_cv_lib_sqlite3_sqlite3_column_decltype=yes ac_cv_lib_sqlite3_sqlite3_column_double=yes \
+  ac_cv_lib_sqlite3_sqlite3_complete=yes ac_cv_lib_sqlite3_sqlite3_enable_shared_cache=yes ac_cv_lib_sqlite3_sqlite3_progress_handler=yes \
+  ac_cv_lib_sqlite3_sqlite3_result_double=yes ac_cv_lib_sqlite3_sqlite3_set_authorizer=yes ac_cv_lib_sqlite3_sqlite3_trace_v2=yes \
+  ac_cv_lib_sqlite3_sqlite3_value_double=yes ac_cv_lib_sqlite3_sqlite3_load_extension=yes ac_cv_lib_sqlite3_sqlite3_serialize=yes \
   ___ORIG_DEPS_PREFIX=${PREFIX}___
-  #ac_cv_lib_sqlite3_sqlite3_bind_double=yes ac_cv_lib_sqlite3_sqlite3_column_decltype=yes ac_cv_lib_sqlite3_sqlite3_column_double=yes \
-  #ac_cv_lib_sqlite3_sqlite3_complete=yes ac_cv_lib_sqlite3_sqlite3_enable_shared_cache=yes ac_cv_lib_sqlite3_sqlite3_progress_handler=yes \
-  #ac_cv_lib_sqlite3_sqlite3_result_double=yes ac_cv_lib_sqlite3_sqlite3_set_authorizer=yes ac_cv_lib_sqlite3_sqlite3_trace_v2=yes \
-  #ac_cv_lib_sqlite3_sqlite3_value_double=yes ac_cv_lib_sqlite3_sqlite3_load_extension=yes ac_cv_lib_sqlite3_sqlite3_serialize=yes \
-  
 
 make -j $(nproc --all) \
         EXTRA_CFLAGS="-flto -fuse-linker-plugin -fno-fat-lto-objects" \
@@ -627,7 +626,7 @@ $ELEVATE cp -v Modules/_hacl/libHacl_Hash_SHA2.a "$target/lib/"
 $ELEVATE cp -v Modules/_hacl/libHacl_Hash_BLAKE2.a "$target/lib/"
 $ELEVATE cp -v Modules/_hacl/libHacl_HMAC.a "$target/lib/"
 $ELEVATE git clone https://github.com/dcwatson/deflate "$target/deflate"
-$ELEVATE cp -r "deflate_config" "$target/deflate/"
+$ELEVATE cp -r "deflate_config" "$target/deflate"
 
 $ELEVATE mkdir -p "$target/Embedded"
 # The object file usually gets deleted during the build, so make sure to recompile here just in case.

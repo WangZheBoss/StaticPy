@@ -164,8 +164,8 @@ select selectmodule.c
 _sysconfig _sysconfig.c
 
 # XML
-#_elementtree _elementtree.c
-#pyexpat pyexpat.c
+_elementtree _elementtree.c
+pyexpat pyexpat.c
 
 # hashing builtins - HACL*-backed. Upstream moved blake2 to use the
 # same libHacl_Hash_*.a pattern as sha2 (commit 325e9b8ef40).
@@ -207,10 +207,10 @@ _ctypes _ctypes/_ctypes.c _ctypes/callbacks.c _ctypes/callproc.c _ctypes/stgdict
 #_dbm _dbmmodule.c -l:libgdbm_compat.a -DUSE_GDBM_COMPAT
 #_gdbm _gdbmmodule.c -l:libgdbm.a
 #_lzma _lzmamodule.c -l:liblzma.a
-#_sqlite3 -I$(srcdir)/Modules/_sqlite _sqlite/blob.c _sqlite/connection.c _sqlite/cursor.c #_sqlite/microprotocols.c _sqlite/module.c _sqlite/prepare_protocol.c _sqlite/row.c _sqlite/#statement.c _sqlite/util.c -l:libsqlite3.a -DMODULE_NAME='"sqlite3"' #-DSQLITE_ENABLE_COLUMN_METADATA
+#_sqlite3 -I$(srcdir)/Modules/_sqlite _sqlite/blob.c _sqlite/connection.c _sqlite/cursor.c #_sqlite/microprotocols.c _sqlite/module.c _sqlite/prepare_protocol.c _sqlite/row.c _sqlite/#statement.c _sqlite/util.c -l:libsqlite3.a -DMODULE_NAME='"sqlite3"' -DSQLITE_ENABLE_COLUMN_METADATA
 #_uuid _uuidmodule.c -l:libuuid.a
-#_zstd _zstd/_zstdmodule.c _zstd/compressor.c _zstd/decompressor.c _zstd/zstddict.c -I (srcdir)/Modules/_zstd -l:libzstd.a
-#zlib  zlibmodule.c -l:libz.a
+_zstd _zstd/_zstdmodule.c _zstd/compressor.c _zstd/decompressor.c _zstd/zstddict.c -I$(srcdir)/Modules/_zstd -l:libzstd.a
+zlib  zlibmodule.c -l:libz.a
 
 # The readline module also supports libeditline (-leditline).
 # Some systems may require -ltermcap or -ltermlib.
@@ -221,8 +221,8 @@ _ctypes _ctypes/_ctypes.c _ctypes/callbacks.c _ctypes/callproc.c _ctypes/stgdict
 #_hashlib _hashopenssl.c $(OPENSSL_INCLUDES) $(OPENSSL_LDFLAGS) -lcrypto
 
 # To statically link OpenSSL:
-#_ssl _ssl.c $(OPENSSL_INCLUDES) $(OPENSSL_LDFLAGS) -l:libssl.a -l:libcrypto.a
-#_hashlib _hashopenssl.c $(OPENSSL_INCLUDES) $(OPENSSL_LDFLAGS) -l:libcrypto.a
+_ssl _ssl.c $(OPENSSL_INCLUDES) $(OPENSSL_LDFLAGS) -l:libssl.a -l:libcrypto.a
+_hashlib _hashopenssl.c $(OPENSSL_INCLUDES) $(OPENSSL_LDFLAGS) -l:libcrypto.a
 
 # The _tkinter module.
 #
