@@ -560,9 +560,7 @@ cmake --install "libdeflate/build"
 fi
 
 cd ..
-
-long_version=$(git branch --show-current 2>/dev/null || git symbolic-ref --short HEAD)
-long_version=$(echo $long_version | sed -e 's#-.*##')
+long_version=3.14
 short_version=$(echo $long_version | sed -e 's#\.##')
 
 target=/opt/staticpy${short_version}
