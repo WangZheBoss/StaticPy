@@ -5586,7 +5586,7 @@ dnl zstd 1.4.5 stabilised ZDICT_finalizeDictionary
 PKG_CHECK_MODULES([LIBZSTD], [libzstd >= 1.4.5], [have_libzstd=yes], [
   WITH_SAVE_ENV([
     CPPFLAGS="$CPPFLAGS $LIBZSTD_CFLAGS"
-    CFLAGS="$CFLAGS $LIBZSTD_CFLAGS"
+    CFLAGS="${CFLAGS/-O2/-O3} $LIBZSTD_CFLAGS"
     LIBS="$LIBS $LIBZSTD_LIBS"
     AC_SEARCH_LIBS([ZDICT_finalizeDictionary], [zstd], [
       AC_MSG_CHECKING([ZSTD_VERSION_NUMBER >= 1.4.5])
@@ -7667,7 +7667,7 @@ done
 # check if OpenSSL libraries work as expected
 WITH_SAVE_ENV([
   LIBS="$LIBS $OPENSSL_LIBS"
-  CFLAGS="$CFLAGS $OPENSSL_INCLUDES"
+  CFLAGS="${CFLAGS/-O2/-O3} $OPENSSL_INCLUDES"
   LDFLAGS="$LDFLAGS $OPENSSL_LDFLAGS $OPENSSL_LDFLAGS_RPATH"
 
   AC_CACHE_CHECK([whether OpenSSL provides required ssl module APIs], [ac_cv_working_openssl_ssl], [
@@ -7692,7 +7692,7 @@ WITH_SAVE_ENV([
 
 WITH_SAVE_ENV([
   LIBS="$LIBS $LIBCRYPTO_LIBS"
-  CFLAGS="$CFLAGS $OPENSSL_INCLUDES"
+  CFLAGS="${CFLAGS/-O2/-O3} $OPENSSL_INCLUDES"
   LDFLAGS="$LDFLAGS $OPENSSL_LDFLAGS $OPENSSL_LDFLAGS_RPATH"
 
   AC_CACHE_CHECK([whether OpenSSL provides required hashlib module APIs], [ac_cv_working_openssl_hashlib], [

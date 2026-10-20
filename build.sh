@@ -132,7 +132,7 @@ download_file() {
     download_file https://github.com/facebook/zstd/releases/download/v1.5.7/zstd-1.5.7.tar.gz zstd.tar.gz
     tar -xf zstd.tar.gz
   fi
-  make -C zstd-1.5.7/lib -j$(nproc --all) libzstd.a CC="$CC"
+  make -C zstd-1.5.7/lib -j$(nproc --all) libzstd.a CC="$CC" MOREFLAGS=-O3
   cp zstd-1.5.7/lib/libzstd.a ${PREFIX}/lib/
   # _zstd CPython module uses <zstd.h>, <zdict.h>, <zstd_errors.h>; copy all.
   cp zstd-1.5.7/lib/zstd.h zstd-1.5.7/lib/zstd_errors.h zstd-1.5.7/lib/zdict.h ${PREFIX}/include/
