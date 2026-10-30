@@ -1062,9 +1062,9 @@ MP_DECL(void) mp_rewinddir(DIR *dirp);
 
 #ifdef __linux
 /* Standard streams.  */
-extern EFILE *stdin;		/* Standard input stream.  */
-extern EFILE *stdout;		/* Standard output stream.  */
-extern EFILE *stderr;		/* Standard error output stream.  */
+extern FILE *stdin;		/* Standard input stream.  */
+extern FILE *stdout;		/* Standard output stream.  */
+extern FILE *stderr;		/* Standard error output stream.  */
 #endif  /* __linux */
 
 /* File Opening and Closing */
