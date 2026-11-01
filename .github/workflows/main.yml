@@ -22,7 +22,7 @@ jobs:
     runs-on: macos-26
     steps:
     - name: Check out repository code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v7
     - name: Download cache
       env:
         CACHE_SAS: ${{ secrets.CACHE_SAS }}
@@ -132,7 +132,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
       - name: Download cache
         env:
           CACHE_SAS: ${{ secrets.CACHE_SAS }}
@@ -231,7 +231,7 @@ jobs:
     runs-on: windows-2025-vs2026
     steps:
     - name: Check out repository code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v7
     - uses: TheMrMilchmann/setup-msvc-dev@v3
       with:
         arch: x64
