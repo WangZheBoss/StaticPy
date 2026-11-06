@@ -138,7 +138,7 @@ class _Target(typing.Generic[_S, _R]):
             f"-I{CPYTHON / 'Include' / 'internal' / 'mimalloc'}",
             f"-I{CPYTHON / 'Python'}",
             f"-I{CPYTHON / 'Tools' / 'jit'}",
-            "-O3",
+            "-Os",
             "-c",
             # Shorten full absolute file paths in the generated code (like the
             # __FILE__ macro and assert failure messages) for reproducibility:

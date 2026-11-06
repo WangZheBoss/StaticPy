@@ -4789,8 +4789,8 @@ then
 (it is also a good idea to do 'make clean' before compiling)" "$LINENO" 5
 fi
 
-# Don't let AC_PROG_CC set the default CFLAGS. It normally sets -g -O2
-# when the compiler supports them, but we don't always want -O2, and
+# Don't let AC_PROG_CC set the default CFLAGS. It normally sets -g -Os
+# when the compiler supports them, but we don't always want -Os, and
 # we set -g later.
 if test -z "$CFLAGS"; then
         CFLAGS=
@@ -5795,13 +5795,13 @@ if test $ac_test_CFLAGS; then
   CFLAGS=$ac_save_CFLAGS
 elif test $ac_cv_prog_cc_g = yes; then
   if test "$GCC" = yes; then
-    CFLAGS="-g -O2"
+    CFLAGS="-g -Os"
   else
     CFLAGS="-g"
   fi
 else
   if test "$GCC" = yes; then
-    CFLAGS="-O2"
+    CFLAGS="-Os"
   else
     CFLAGS=
   fi
@@ -9678,11 +9678,11 @@ then
 	    if test "$Py_DEBUG" = 'true' ; then
 		OPT="-g $PYDEBUG_CFLAGS -Wall"
 	    else
-		OPT="-g -O3 -Wall"
+		OPT="-g -Os -Wall"
 	    fi
 	    ;;
 	*)
-	    OPT="-O3 -Wall"
+	    OPT="-Os -Wall"
 	    ;;
 	esac
 
@@ -9746,7 +9746,7 @@ then :
 
 else case e in #(
   e)
-      as_fn_append LINKFORSHARED " -O2 -g0"
+      as_fn_append LINKFORSHARED " -Os -g0"
      ;;
 esac
 fi
@@ -30465,16 +30465,16 @@ done
 { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: done" >&5
 printf "%s\n" "done" >&6; }
 
-# Availability of -O2:
-{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for -O2" >&5
-printf %s "checking for -O2... " >&6; }
+# Availability of -Os:
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for -Os" >&5
+printf %s "checking for -Os... " >&6; }
 if test ${ac_cv_compile_o2+y}
 then :
   printf %s "(cached) " >&6
 else case e in #(
   e)
 saved_cflags="$CFLAGS"
-CFLAGS="-O2"
+CFLAGS="-Os"
 cat confdefs.h - <<_ACEOF >conftest.$ac_ext
 /* end confdefs.h.  */
 
@@ -30506,7 +30506,7 @@ printf "%s\n" "$ac_cv_compile_o2" >&6; }
 { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for glibc _FORTIFY_SOURCE/memmove bug" >&5
 printf %s "checking for glibc _FORTIFY_SOURCE/memmove bug... " >&6; }
 saved_cflags="$CFLAGS"
-CFLAGS="-O2 -D_FORTIFY_SOURCE=2"
+CFLAGS="-Os -D_FORTIFY_SOURCE=2"
 if test "$ac_cv_compile_o2" = no; then
     CFLAGS=""
 fi
@@ -30609,7 +30609,7 @@ if test "$ac_cv_gcc_asm_for_x87" = yes; then
             { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for gcc ipa-pure-const bug" >&5
 printf %s "checking for gcc ipa-pure-const bug... " >&6; }
             saved_cflags="$CFLAGS"
-            CFLAGS="-O2"
+            CFLAGS="-Os"
             if test "$cross_compiling" = yes
 then :
   have_ipa_pure_const_bug=undefined

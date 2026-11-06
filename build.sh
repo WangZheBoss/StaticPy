@@ -29,8 +29,8 @@ set -x
 # happens to also delete all the static libraries that we built.
 export "PREFIX=$(pwd)/../StaticPy-Deps"
 export "PYTHON_BASE=$(pwd)"
-export "CFLAGS=-I${PREFIX}/include -I${PYTHON_BASE}/Include -fPIC -flto -fuse-linker-plugin -fno-fat-lto-objects -O2 -Wno-error=incompatible-pointer-types"
-export "CXXFLAGS=-I${PREFIX}/include -I${PYTHON_BASE}/Include -fPIC -flto -fuse-linker-plugin -fno-fat-lto-objects -O2 -Wno-error=incompatible-pointer-types"
+export "CFLAGS=-I${PREFIX}/include -I${PYTHON_BASE}/Include -fPIC -flto -fuse-linker-plugin -fno-fat-lto-objects -Os -Wno-error=incompatible-pointer-types"
+export "CXXFLAGS=-I${PREFIX}/include -I${PYTHON_BASE}/Include -fPIC -flto -fuse-linker-plugin -fno-fat-lto-objects -Os -Wno-error=incompatible-pointer-types"
 export "CPPFLAGS=-I${PREFIX}/include -I${PYTHON_BASE}/Include"
 # --wrap rewrites references to fopen/fclose/etc into __wrap_NAME, but
 # ld only PULLS mp_embed.o from libmp_embed.a if some symbol it defines
@@ -147,7 +147,7 @@ python3 Lib/mkembeddata.py Embedded Embedded/embed_data
 # -lmp_embed even though we don't need interception there). Without
 # -fPIC, GCC emits PC32 relocations against glibc symbols like stderr
 # that can't be used in shared objects, and the dep builds fail.
-$CC -c -g -O2 -DMP_EMBED_USE_WRAP -fPIC -o Embedded/mp_embed.o Embedded/mp_embed.c -IInclude -I${PREFIX}/include
+$CC -c -g -Os -DMP_EMBED_USE_WRAP -fPIC -o Embedded/mp_embed.o Embedded/mp_embed.c -IInclude -I${PREFIX}/include
 $CC -c -fPIC -o Embedded/mp_embed_data.o Embedded/mp_embed_data.c
 ar rcs ${PREFIX}/lib/libmp_embed.a Embedded/mp_embed.o Embedded/mp_embed_data.o
 
@@ -570,8 +570,8 @@ then
   target="$1"
 fi
 
-export "CFLAGS=-I${PREFIX}/include -fPIC -flto -fuse-linker-plugin -fno-fat-lto-objects -O2 -Wno-error=incompatible-pointer-types"
-export "CXXFLAGS=-I${PREFIX}/include -fPIC -flto -fuse-linker-plugin -fno-fat-lto-objects -O2 -Wno-error=incompatible-pointer-types"
+export "CFLAGS=-I${PREFIX}/include -fPIC -flto -fuse-linker-plugin -fno-fat-lto-objects -Os -Wno-error=incompatible-pointer-types"
+export "CXXFLAGS=-I${PREFIX}/include -fPIC -flto -fuse-linker-plugin -fno-fat-lto-objects -Os -Wno-error=incompatible-pointer-types"
 export "CPPFLAGS=-I${PREFIX}/include"
 
 # The UCS4 has best compatibility with wheels on PyPI it seems.
@@ -629,7 +629,7 @@ $ELEVATE cp -r "deflate_config" "$target/deflate"
 $ELEVATE mkdir -p "$target/Embedded"
 # The object file usually gets deleted during the build, so make sure to recompile here just in case.
 rm -f Embedded/mp_embed.o
-$CC -c -g -O2 -DMP_EMBED_USE_WRAP -fPIC -o Embedded/mp_embed.o Embedded/mp_embed.c -IInclude -I${PREFIX}/include
+$CC -c -g -Os -DMP_EMBED_USE_WRAP -fPIC -o Embedded/mp_embed.o Embedded/mp_embed.c -IInclude -I${PREFIX}/include
 $ELEVATE cp -r "Embedded/mp_embed.o" "$target/Embedded/"
 $ELEVATE cp -r "Embedded/embed_data" "$target/Embedded/"
 

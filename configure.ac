@@ -962,8 +962,8 @@ then
 (it is also a good idea to do 'make clean' before compiling)])
 fi
 
-# Don't let AC_PROG_CC set the default CFLAGS. It normally sets -g -O2
-# when the compiler supports them, but we don't always want -O2, and
+# Don't let AC_PROG_CC set the default CFLAGS. It normally sets -g -Os
+# when the compiler supports them, but we don't always want -Os, and
 # we set -g later.
 if test -z "$CFLAGS"; then
         CFLAGS=
@@ -2337,11 +2337,11 @@ then
 	    if test "$Py_DEBUG" = 'true' ; then
 		OPT="-g $PYDEBUG_CFLAGS -Wall"
 	    else
-		OPT="-g -O3 -Wall"
+		OPT="-g -Os -Wall"
 	    fi
 	    ;;
 	*)
-	    OPT="-O3 -Wall"
+	    OPT="-Os -Wall"
 	    ;;
 	esac
 
@@ -2395,7 +2395,7 @@ AS_CASE([$ac_sys_system],
       AS_VAR_APPEND([LDFLAGS_NODIST], [" -sASSERTIONS"])
       AS_VAR_APPEND([LINKFORSHARED], [" $WASM_LINKFORSHARED_DEBUG"])
     ], [
-      AS_VAR_APPEND([LINKFORSHARED], [" -O2 -g0"])
+      AS_VAR_APPEND([LINKFORSHARED], [" -Os -g0"])
     ])
   ],
   [WASI], [
@@ -5586,7 +5586,7 @@ dnl zstd 1.4.5 stabilised ZDICT_finalizeDictionary
 PKG_CHECK_MODULES([LIBZSTD], [libzstd >= 1.4.5], [have_libzstd=yes], [
   WITH_SAVE_ENV([
     CPPFLAGS="$CPPFLAGS $LIBZSTD_CFLAGS"
-    CFLAGS="${CFLAGS/-O2/-O3} $LIBZSTD_CFLAGS"
+    CFLAGS="${CFLAGS/-Os/-O3} $LIBZSTD_CFLAGS"
     LIBS="$LIBS $LIBZSTD_LIBS"
     AC_SEARCH_LIBS([ZDICT_finalizeDictionary], [zstd], [
       AC_MSG_CHECKING([ZSTD_VERSION_NUMBER >= 1.4.5])
@@ -7360,10 +7360,10 @@ for dir in $SRCDIRS; do
 done
 AC_MSG_RESULT([done])
 
-# Availability of -O2:
-AC_CACHE_CHECK([for -O2], [ac_cv_compile_o2], [
+# Availability of -Os:
+AC_CACHE_CHECK([for -Os], [ac_cv_compile_o2], [
 saved_cflags="$CFLAGS"
-CFLAGS="-O2"
+CFLAGS="-Os"
 AC_COMPILE_IFELSE([AC_LANG_PROGRAM([], [])], [ac_cv_compile_o2=yes], [ac_cv_compile_o2=no])
 CFLAGS="$saved_cflags"
 ])
@@ -7372,7 +7372,7 @@ CFLAGS="$saved_cflags"
 # http://sourceware.org/ml/libc-alpha/2010-12/msg00009.html
 AC_MSG_CHECKING([for glibc _FORTIFY_SOURCE/memmove bug])
 saved_cflags="$CFLAGS"
-CFLAGS="-O2 -D_FORTIFY_SOURCE=2"
+CFLAGS="-Os -D_FORTIFY_SOURCE=2"
 if test "$ac_cv_compile_o2" = no; then
     CFLAGS=""
 fi
@@ -7439,7 +7439,7 @@ if test "$ac_cv_gcc_asm_for_x87" = yes; then
         gcc)
             AC_MSG_CHECKING([for gcc ipa-pure-const bug])
             saved_cflags="$CFLAGS"
-            CFLAGS="-O2"
+            CFLAGS="-Os"
             AC_RUN_IFELSE([AC_LANG_SOURCE([[
             __attribute__((noinline)) int
             foo(int *p) {
@@ -7667,7 +7667,7 @@ done
 # check if OpenSSL libraries work as expected
 WITH_SAVE_ENV([
   LIBS="$LIBS $OPENSSL_LIBS"
-  CFLAGS="${CFLAGS/-O2/-O3} $OPENSSL_INCLUDES"
+  CFLAGS="${CFLAGS/-Os/-O3} $OPENSSL_INCLUDES"
   LDFLAGS="$LDFLAGS $OPENSSL_LDFLAGS $OPENSSL_LDFLAGS_RPATH"
 
   AC_CACHE_CHECK([whether OpenSSL provides required ssl module APIs], [ac_cv_working_openssl_ssl], [
@@ -7692,7 +7692,7 @@ WITH_SAVE_ENV([
 
 WITH_SAVE_ENV([
   LIBS="$LIBS $LIBCRYPTO_LIBS"
-  CFLAGS="${CFLAGS/-O2/-O3} $OPENSSL_INCLUDES"
+  CFLAGS="${CFLAGS/-Os/-O3} $OPENSSL_INCLUDES"
   LDFLAGS="$LDFLAGS $OPENSSL_LDFLAGS $OPENSSL_LDFLAGS_RPATH"
 
   AC_CACHE_CHECK([whether OpenSSL provides required hashlib module APIs], [ac_cv_working_openssl_hashlib], [
