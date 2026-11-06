@@ -22,7 +22,7 @@ find_path(LIBDEFLATE_INCLUDE_DIR
 if(WIN32 AND NOT MINGW)
     set(_libdeflate_names deflatestatic)
 else()
-    set(_libdeflate_names deflate)
+    set(_libdeflate_names libdeflate)
 endif()
 
 find_library(LIBDEFLATE_STATIC_LIBRARY
