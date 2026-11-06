@@ -170,15 +170,15 @@ done
 cd ..
 fi
 
-if [ ! -d editline-2.1.0 ]; then
-download_file https://github.com/troglobit/editline/releases/download/2.1.0/editline-2.1.0.tar.gz editline.tar.gz
-tar -xf editline.tar.gz
-cd editline-2.1.0
-./configure --prefix=${PREFIX} --disable-shared
-make -j$(nproc --all)
-make install
-cd ..
-fi
+#if [ ! -d editline-2.1.0 ]; then
+#download_file https://github.com/troglobit/editline/releases/download/2.1.0/editline-2.1.0.tar.gz editline.tar.gz
+#tar -xf editline.tar.gz
+#cd editline-2.1.0
+#./configure --prefix=${PREFIX} --disable-shared
+#make -j$(nproc --all)
+#make install
+#cd ..
+#fi
 
 if [ ! -d sqlite-autoconf-3530300 ]; then
 download_file https://sqlite.org/2026/sqlite-autoconf-3530300.tar.gz sqlite.tar.gz
@@ -216,26 +216,26 @@ make install "PREFIX=$PREFIX" -j$(nproc --all)
 cd ..
 fi
 
-if [ ! -d util-linux-2.39 ]; then
-download_file https://mirrors.edge.kernel.org/pub/linux/utils/util-linux/v2.39/util-linux-2.39.tar.gz util-linux.tar.gz
-tar -xf util-linux.tar.gz
-cd util-linux-2.39
-./configure --prefix=${PREFIX} --disable-shared --disable-all-programs --enable-libuuid
-make -j$(nproc --all)
-make install
-cp ./libuuid/src/uuid.h ${PREFIX}/include/
-cd ..
-fi
+#if [ ! -d util-linux-2.39 ]; then
+#download_file https://mirrors.edge.kernel.org/pub/linux/utils/util-linux/v2.39/util-linux-2.39.tar.gz util-linux.tar.gz
+#tar -xf util-linux.tar.gz
+#cd util-linux-2.39
+#./configure --prefix=${PREFIX} --disable-shared --disable-all-programs --enable-libuuid
+#make -j$(nproc --all)
+#make install
+#cp ./libuuid/src/uuid.h ${PREFIX}/include/
+#cd ..
+#fi
 
-if [ ! -d xz-5.8.1 ]; then
-download_file https://github.com/tukaani-project/xz/releases/download/v5.8.1/xz-5.8.1.tar.gz xz.tar.gz
-tar -xf xz.tar.gz
-cd xz-5.8.1
-./configure --prefix=${PREFIX} --disable-shared
-make -j$(nproc --all)
-make install
-cd ..
-fi
+#if [ ! -d xz-5.8.1 ]; then
+#download_file https://github.com/tukaani-project/xz/releases/download/v5.8.1/xz-5.8.1.tar.gz xz.tar.gz
+#tar -xf xz.tar.gz
+#cd xz-5.8.1
+#./configure --prefix=${PREFIX} --disable-shared
+#make -j$(nproc --all)
+#make install
+#cd ..
+#fi
 
 if [ ! -d libffi-3.7.1 ]; then
 download_file https://github.com/libffi/libffi/releases/download/v3.7.1/libffi-3.7.1.tar.gz libffi.tar.gz
@@ -258,31 +258,31 @@ make install
 cd ..
 fi
 
-if [ ! -d libpng-1.6.50 ]; then
-download_file http://downloads.sourceforge.net/project/libpng/libpng16/1.6.50/libpng-1.6.50.tar.xz libpng.tar.gz
-tar -xf libpng.tar.gz
-cd libpng-1.6.50
-./configure --prefix=${PREFIX} --disable-shared
-make pnglibconf.h
-find . \( -iname '*.h.in' -o -iname '*.h' -o -iname '*.c' -o -iname '*.cc' -o -iname '*.cpp' -o -iname '*.cxx' \) | xargs sed -i '1s/^/#include "mp_embed.h"\n\'$'\n/g'
-sed -i -e 's/define PNG_ZLIB_VERNUM 0x[0-9a-z][0-9a-z][0-9a-z][0-9a-z]/define PNG_ZLIB_VERNUM 0/g' pnglibconf.h
-make -j$(nproc --all)
-make install
-cd ..
-fi
+#if [ ! -d libpng-1.6.50 ]; then
+#download_file http://downloads.sourceforge.net/project/libpng/libpng16/1.6.50/libpng-1.6.50.tar.xz libpng.tar.gz
+#tar -xf libpng.tar.gz
+#cd libpng-1.6.50
+#./configure --prefix=${PREFIX} --disable-shared
+#make pnglibconf.h
+#find . \( -iname '*.h.in' -o -iname '*.h' -o -iname '*.c' -o -iname '*.cc' -o -iname '*.cpp' -o -iname '*.cxx' \) | xargs sed -i '1s/^/#include "mp_embed.h"\n\'$'\n/g'
+#sed -i -e 's/define PNG_ZLIB_VERNUM 0x[0-9a-z][0-9a-z][0-9a-z][0-9a-z]/define PNG_ZLIB_VERNUM 0/g' pnglibconf.h
+#make -j$(nproc --all)
+#make install
+#cd ..
+#fi
 
-if [ ! -d harfbuzz-14.2.1 ]; then
-download_file https://github.com/harfbuzz/harfbuzz/releases/download/14.2.1/harfbuzz-14.2.1.tar.xz harfbuzz.tar.gz
-tar -xf harfbuzz.tar.gz
-cd harfbuzz-14.2.1
-find . \( -iname '*.h.in' -o -iname '*.h' -o -iname '*.c' -o -iname '*.cc' -o -iname '*.cpp' -o -iname '*.cxx' \) | xargs sed -i '1s/^/#include "mp_embed.h"\n\'$'\n/g'
-# harfbuzz >= 9 dropped autotools and is meson-only. Static build with all
-# optional deps disabled (on Linux freetype is built separately and does not
-# link harfbuzz, so harfbuzz needs no freetype/pkg-config here).
-meson setup build-static --prefix=${PREFIX} --libdir=lib --default-library=static --buildtype=release -Dfreetype=disabled -Dtests=disabled -Ddocs=disabled -Dutilities=disabled -Dglib=disabled -Dgobject=disabled -Dcairo=disabled -Dicu=disabled
-meson install -C build-static
-cd ..
-fi
+#if [ ! -d harfbuzz-14.2.1 ]; then
+#download_file https://github.com/harfbuzz/harfbuzz/releases/download/14.2.1/harfbuzz-14.2.1.tar.xz harfbuzz.tar.gz
+#tar -xf harfbuzz.tar.gz
+#cd harfbuzz-14.2.1
+#find . \( -iname '*.h.in' -o -iname '*.h' -o -iname '*.c' -o -iname '*.cc' -o -iname '*.cpp' -o -iname '*.cxx' \) | xargs sed -i '1s/^/#include "mp_embed.h"\n\'$'\n/g'
+## harfbuzz >= 9 dropped autotools and is meson-only. Static build with all
+## optional deps disabled (on Linux freetype is built separately and does not
+## link harfbuzz, so harfbuzz needs no freetype/pkg-config here).
+#meson setup build-static --prefix=${PREFIX} --libdir=lib --default-library=static --buildtype=release -Dfreetype=disabled -Dtests=disabled -Ddocs=disabled -Dutilities=disabled -Dglib=disabled -Dgobject=disabled -Dcairo=disabled -Dicu=disabled
+#meson install -C build-static
+#cd ..
+#fi
 
 #if [ ! -d xtrans-1.5.0 ]; then
 #download_file https://xorg.freedesktop.org/releases/individual/lib/xtrans-1.5.0.tar.gz xtrans.tar.gz
@@ -582,7 +582,7 @@ export "CPPFLAGS=-I${PREFIX}/include"
   CXX="$CXX" \
   CFLAGS="-g $CFLAGS" \
   LDFLAGS="-g -Xlinker -export-dynamic -rdynamic -Bsymbolic-functions -Wl,-z,relro -Wl,-allow-multiple-definition $LDFLAGS" \
-  LIBS="-l:libffi.a -l:libbz2.a -l:libuuid.a -l:liblzma.a -l:librt.a -l:libmp_embed.a -l:libdeflate.a" \
+  LIBS="-l:libffi.a -l:libmp_embed.a" \
   PROFILE_TASK='-m test --pgo -x test_json ' \
   MODULE_BUILDTYPE=static \
   ax_cv_c_float_words_bigendian=no \
